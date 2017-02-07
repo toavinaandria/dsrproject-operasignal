@@ -11,7 +11,7 @@ Github as a portfolio to showcase their skills to employers.
 
 While many articles both corroborating and disparaging that message have
 appeared since, if its claims are true, Github activity (combined with other
-datasets, such as LinkedIn updates) could be used as a signal that someone is
+datasets, such as career website updates) could be used as a signal that someone is
 looking to switch jobs. This kind of signal could be of tremendous value for
 recruiters.
 
