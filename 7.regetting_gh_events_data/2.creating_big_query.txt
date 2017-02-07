@@ -1,0 +1,40 @@
+DESCRIPTION OF STEPS
+
+1. In this step, I have loaded the CSV file created in the previous step as a table
+ (named ghdata.hn_users_to_query_2dec16) in Google BigQuery so that I may filter Github 
+ events to only includes those relevant users
+
+2. I also copied the latest 2016 githubarchive data to my tables so that I can query against
+ the most recent posts now that the scope is reduced
+
+3. I then created a query to download all events filtered by those users between 2012 and 2016 but without
+the payload. I ran the following query
+
+SELECT type, repo.name, repo.url, actor.login, org.login, created_at
+  FROM
+  (SELECT * FROM
+    [ghdata.2012],
+    [ghdata.2013],
+    [ghdata.2014],
+    [ghdata.2015],
+    [ghdata.201601],
+    [ghdata.201602],
+    [ghdata.201603],
+    [ghdata.201604],
+    [ghdata.201605],
+    [ghdata.201606],
+    [ghdata.201607],
+    [ghdata.201608],
+    [ghdata.201609],
+    [ghdata.201610],
+    [ghdata.201611])
+  WHERE actor.login IN (SELECT gh_login
+                        FROM [ghdata.hn_users_to_query_2dec16]
+                        )
+
+4. This generated 964993 rows and processed 76.2GB. I then downloaded the data (only 22mb in the end)
+without the payload (can always do that again next time if useful)
+
+5. I saved the data in 2.big_query_results
+
+  
